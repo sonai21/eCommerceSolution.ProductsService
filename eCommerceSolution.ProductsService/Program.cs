@@ -1,4 +1,5 @@
 using eCommerceSolution.ProductsService.DbContext;
+using eCommerceSolution.ProductsService.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseExceptionHandlingMiddleware();
 
 app.UseHttpsRedirection();
 
