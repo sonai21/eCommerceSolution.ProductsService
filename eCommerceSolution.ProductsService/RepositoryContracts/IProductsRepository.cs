@@ -8,4 +8,6 @@ public interface IProductsRepository
     Task<IEnumerable<Product>> GetAllProducts();
 
     Task<Product?> GetProductById(Guid productId);
+
+    Task<Product?> DeleteProduct(Guid productId);
 }

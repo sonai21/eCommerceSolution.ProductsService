@@ -47,6 +47,17 @@ namespace eCommerceSolution.ProductsService.Controllers
 
         }
 
-        
+        [HttpDelete("deleteProduct/{id:guid}")]
+        public async Task<IActionResult?> DeleteProduct(Guid id)
+        {
+            var result = await _productsService.DeleteProduct(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+
     }
 }

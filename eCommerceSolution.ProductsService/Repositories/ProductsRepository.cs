@@ -27,6 +27,22 @@ public class ProductsRepository : IProductsRepository
             return null;
         }
     }
+    public async Task<Product?> GetProductById(Guid productId)
+    {
+        var result = await _applicationDbContext.Products.FindAsync(productId);
+        return result;
+    }
+    public async Task<Product?> DeleteProduct(Guid productId)
+    {
+       var result = await GetProductById(productId);
+        if(result == null)
+        {
+            return null;
+        }
+        _applicationDbContext.Products.Remove(result);
+        await _applicationDbContext.SaveChangesAsync();
+        return result;
+    }
 
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
@@ -34,9 +50,5 @@ public class ProductsRepository : IProductsRepository
         return allProducts;
     }
 
-    public async Task<Product?> GetProductById(Guid productId)
-    {
-        var result = await _applicationDbContext.Products.FindAsync(productId);
-        return result;
-    }
+    
 }

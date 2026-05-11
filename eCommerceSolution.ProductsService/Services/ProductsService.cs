@@ -42,6 +42,25 @@ public class ProductsService : IProductsService
         }
     }
 
+    public async Task<ProductResponse?> DeleteProduct(Guid productId)
+    {
+        var result = await _productsRepository.DeleteProduct(productId);
+
+        if(result == null)
+        {
+            return null;
+        }
+
+        return new ProductResponse()
+        {
+            ProductId = result.ProductId,
+            ProductName = result.ProductName,
+            UnitPrice = result.UnitPrice,
+            Category = result.Category,
+            QuantityInStock = result.QuantityInStock
+        };
+    }
+
     public async Task<IEnumerable<ProductResponse>> GetAllProducts()
     {
         IEnumerable<Product> allProducts = await _productsRepository.GetAllProducts();

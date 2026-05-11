@@ -8,4 +8,6 @@ public interface IProductsService
     Task<IEnumerable<ProductResponse>> GetAllProducts();
 
     Task<ProductResponse?> GetProductById(Guid productId);
+
+    Task<ProductResponse?> DeleteProduct(Guid productId);
 }
