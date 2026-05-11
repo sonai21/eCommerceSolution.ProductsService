@@ -5,4 +5,5 @@ namespace eCommerceSolution.ProductsService.ServiceContracts;
 public interface IProductsService
 {
     Task<ProductResponse?> AddProduct(ProductAddRequest productAddRequest);
+    Task<IEnumerable<ProductResponse>> GetAllProducts();
 }

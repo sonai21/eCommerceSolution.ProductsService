@@ -41,4 +41,18 @@ public class ProductsService : IProductsService
             return null;
         }
     }
+
+    public async Task<IEnumerable<ProductResponse>> GetAllProducts()
+    {
+        IEnumerable<Product> allProducts = await _productsRepository.GetAllProducts();
+        IEnumerable<ProductResponse> productResponses = allProducts.Select(item => new ProductResponse()
+        {
+            ProductId = item.ProductId,
+            ProductName = item.ProductName,
+            UnitPrice = item.UnitPrice,
+            Category = item.Category,
+            QuantityInStock = item.QuantityInStock
+        });
+        return productResponses;
+    }
 }

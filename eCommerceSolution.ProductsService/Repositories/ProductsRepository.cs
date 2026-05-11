@@ -1,6 +1,7 @@
 ﻿using eCommerceSolution.ProductsService.DbContext;
 using eCommerceSolution.ProductsService.Models.Entities;
 using eCommerceSolution.ProductsService.RepositoryContracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceSolution.ProductsService.Repositories;
 
@@ -25,5 +26,11 @@ public class ProductsRepository : IProductsRepository
         {
             return null;
         }
+    }
+
+    public async Task<IEnumerable<Product>> GetAllProducts()
+    {
+        IEnumerable<Product> allProducts = await _applicationDbContext.Products.ToListAsync();
+        return allProducts;
     }
 }

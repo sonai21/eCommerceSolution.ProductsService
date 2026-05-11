@@ -28,5 +28,12 @@ namespace eCommerceSolution.ProductsService.Controllers
             return Created("Product successfully added.", result);
         }
 
+        [HttpGet("getAllProducts")]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            var result = await _productsService.GetAllProducts();
+            return Ok(result);
+        }
+
     }
 }
