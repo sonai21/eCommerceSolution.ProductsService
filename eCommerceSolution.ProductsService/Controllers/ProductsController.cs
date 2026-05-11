@@ -15,7 +15,7 @@ namespace eCommerceSolution.ProductsService.Controllers
         {
             _productsService = productsService;
         }
-        [HttpGet]   
+        [HttpGet]
         public IActionResult Get()
         {
             return Ok("Works");
@@ -35,5 +35,18 @@ namespace eCommerceSolution.ProductsService.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult?> GetProductById(Guid id)
+        {
+            var result = await _productsService.GetProductById(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+
+        }
+
+        
     }
 }

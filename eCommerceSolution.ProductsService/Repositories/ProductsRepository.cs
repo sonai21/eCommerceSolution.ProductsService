@@ -33,4 +33,10 @@ public class ProductsRepository : IProductsRepository
         IEnumerable<Product> allProducts = await _applicationDbContext.Products.ToListAsync();
         return allProducts;
     }
+
+    public async Task<Product?> GetProductById(Guid productId)
+    {
+        var result = await _applicationDbContext.Products.FindAsync(productId);
+        return result;
+    }
 }

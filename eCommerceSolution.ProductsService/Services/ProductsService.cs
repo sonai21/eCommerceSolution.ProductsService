@@ -55,4 +55,20 @@ public class ProductsService : IProductsService
         });
         return productResponses;
     }
+
+    public async Task<ProductResponse?> GetProductById(Guid productId)
+    {
+        var result = await _productsRepository.GetProductById(productId);
+        if (result != null) {
+            return new ProductResponse()
+            {
+                ProductId = result.ProductId,
+                ProductName = result.ProductName,
+                UnitPrice = result.UnitPrice,
+                Category = result.Category,
+                QuantityInStock = result.QuantityInStock
+            };
+        }
+        else { return null; }
+    }
 }
