@@ -1,10 +1,11 @@
 ﻿namespace eCommerceSolution.ProductsService.Models.DTOs;
 
-public record ProductResponse(
-    Guid ProductId,
-    string? ProductName,
-    string? Category,
-     decimal? UnitPrice,
-     int? QuantityInStock
-    );
+public class ProductResponse()
+{
+    public Guid ProductId { get; set; }
+    public string? ProductName { get; set; }
+    public string? Category { get; set; }
+    public decimal? UnitPrice { get; set; }
+    public int? QuantityInStock { get; set; }
+}
 

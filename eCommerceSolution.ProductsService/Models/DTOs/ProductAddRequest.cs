@@ -1,9 +1,15 @@
-﻿namespace eCommerceSolution.ProductsService.Models.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
 
-public record ProductAddRequest
-(
-    string? ProductName,
-    string? Category ,
-     decimal? UnitPrice ,
-     int? QuantityInStock 
-);
+namespace eCommerceSolution.ProductsService.Models.DTOs;
+
+public class ProductAddRequest
+{
+    [Required(ErrorMessage = "Product name is required.")]
+    public string? ProductName { get; set; }
+
+    public string? Category { get; set; }
+
+    public decimal? UnitPrice { get; set; }
+
+    public int? QuantityInStock { get; set; }
+}
